@@ -1,0 +1,74 @@
+
+spring:
+    datasource:
+       name: demo2
+       url: jdbc:mysql://testing.10maker.com:3306/uhaou?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+       username: uhaou
+       password: tenmaker5858
+       # 使用druid数据源
+       type: com.alibaba.druid.pool.DruidDataSource
+       driver-class-name: com.mysql.jdbc.Driver
+       filters: stat
+       maxActive: 20
+       initialSize: 1
+       maxWait: 60000
+       minIdle: 1
+       timeBetweenEvictionRunsMillis: 60000
+       minEvictableIdleTimeMillis: 300000
+       validationQuery: select 'x'
+       testWhileIdle: true
+       testOnBorrow: false
+       testOnReturn: false
+       poolPreparedStatements: true
+       maxOpenPreparedStatements: 20
+    data:
+        mongodb:
+          host: 127.0.0.1:27017
+          port: 27017
+          database: local
+    #此配置为redis的单机版
+    redis:
+      jedis:
+        pool:
+          max-active: 8   #连接池的最大连接数
+          max-wait: -1ms   #最大连接等待时间
+          max-idle: 8     #最大空闲数
+          min-idle: 0     #最小空闲数
+      host: localhost
+      port: 6379
+      timeout: 10000ms    #连接超时时间 默认是2000
+      #password:       如果有密码的话配置此项
+      #此配置为redis的集群版
+      #cluster:
+        #nodes:   192.168.199.114:7001,192.168.199.114:7001,192.168.199.115:7001,192.168.199.116:7001
+        #max-redirects: 3
+      #此为配置redis的哨兵模式
+      #sentinel:
+        #host1:192.168.199.115
+        #port1:6379
+    thymeleaf:
+      prefix: classpath:/templates/
+
+
+
+
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.springboot.model
+
+
+
+#tomcat使用的端口号
+server:
+  port:  8081
+
+
+#日志相关配置
+#logging:
+  #pattern:
+   #console: "%d - %msg%n"
+  #file: /Users/hayward/app/springboot.log
+  #level:
+    #com.example.demo2: error
+
